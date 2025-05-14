@@ -1,5 +1,6 @@
 package com.example.BookingHotel.repository;
 
+import com.example.BookingHotel.model.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

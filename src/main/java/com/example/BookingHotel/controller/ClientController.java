@@ -1,6 +1,6 @@
 package com.example.BookingHotel.controller;
 
-import com.example.BookingHotel.repository.Client;
+import com.example.BookingHotel.model.Client;
 import com.example.BookingHotel.service.ClientService;
 import org.springframework.web.bind.annotation.*;
 

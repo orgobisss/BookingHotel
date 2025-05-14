@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ru" data-theme="light" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <title>Отель</title>
+</head>
+
+<body>
+<div class="container">
+    <header class="px-sm-3 d-flex flex-wrap align-items-center justify-content-between py-3 border-bottom shadow rounded mb-4">
+        <!-- Логотип -->
+        <div class="col-12 col-md-3 mb-2 mb-md-0 text-center text-md-start">
+            <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+                <img th:src="@{/images/logo.jpg}" alt="Логотип компании" width="120px" height="80px">
+            </a>
+        </div>
+
+        <!-- Навигация -->
+        <ul class="nav col-12 col-md-auto justify-content-center mb-2 mb-md-0">
+            <li><a href="/" class="nav-link px-2 link-danger">Главная</a></li>
+            <li><a href="/booking" class="nav-link px-2 link-danger">Мои брони</a></li>
+        </ul>
+    </header>
+</div>
+
+
+<main class="container-xl">
+    <h1 class="text-center">Список доступных номеров</h1>
+    <div class="row pt-5">
+        <div class="col-md-6 d-flex mb-4" th:each="item : ${allRooms}">
+            <div class="row g-0 w-100 border rounded overflow-hidden shadow-sm position-relative h-100">
+                <div class="col p-4 d-flex flex-column justify-content-between position-static">
+                    <h4 th:text="${item.roomType}"/>
+                    <strong class="d-inline-block mb-2 text-success-emphasis" th:text="${item.capacity}"/>
+                    <div class="mb-2 text-body-secondary" th:text="${item.price}"/>
+                    <p class="mb-2" th:text="${item.description}"/>
+                    <!-- Кнопка "Забронировать" -->
+                    <div class="mt-auto justify-content-end">
+                        <a th:href="@{/clients/{id}(id=${item.id})}"
+                           class="btn btn-outline-danger">Забронировать</a>
+                    </div>
+                </div>
+                <div class="col-auto d-flex align-items-center">
+                    <img th:src="${item.image}"
+                         th:alt="${item.roomType}"
+                         class="img-fluid rounded"
+                         style="max-width: 300px;"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<br>
+<footer class="py-4 text-center text-body-secondary bg-body-tertiary">
+    <p>Blog template built by <a href="https://t.me/kiwiasos" class="link-danger">@kiwiasos</a>.</p>
+    <p class="mb-0">
+        <a href="#" class="link-danger">Наверх</a>
+    </p>
+</footer>
+</body>
+</html>
