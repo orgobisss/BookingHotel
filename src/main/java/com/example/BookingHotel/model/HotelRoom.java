@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -24,6 +27,9 @@ public class HotelRoom {
     private boolean available;
     private String description;
     private String image;
+
+    @ManyToMany(mappedBy = "bookedRooms")
+    private Set<Client> clients = new HashSet<>();
 
     @Override
     public String toString() {

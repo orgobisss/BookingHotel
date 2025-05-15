@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.Optional;
 
 public interface ClientRepository extends JpaRepository<Client, Long> {
-
-    @Query(value = "SELECT * FROM clients WHERE phone = :phone", nativeQuery = true)
-    Optional<Client> FindByPhone(String phone);
+    Optional<Client> findByNameAndPhone(String name, String phone);
+    Optional<Client> findByEmail(String email);
+    boolean existsByPhone(String phone);
 }
