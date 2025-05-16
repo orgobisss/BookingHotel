@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Мои бронирования</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+<div class="container">
+    <header class="px-sm-3 d-flex flex-wrap align-items-center justify-content-between py-3 border-bottom shadow rounded mb-4">
+        <!-- Логотип -->
+        <div class="col-12 col-md-3 mb-2 mb-md-0 text-center text-md-start">
+            <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+                <img th:src="@{/images/logo.jpg}" alt="Логотип компании" width="120px" height="80px">
+            </a>
+        </div>
+
+        <div class="col-12 col-md-6 d-flex justify-content-center mb-2 mb-md-0">
+            <a th:href="@{/}" class="btn btn-light">Главная</a>
+        </div>
+
+        <!-- Справа: вход/выход -->
+        <div class="col-12 col-md-3 d-flex justify-content-center justify-content-md-end align-items-center" >
+            <div sec:authorize="isAuthenticated()" class="d-flex align-items-center gap-2">
+                <span class="navbar-text me-3" sec:authentication="name"></span>
+                <form th:action="@{/}" method="post" class="mb-0">
+                    <button type="submit" class="btn btn-outline-danger">Выйти</button>
+                </form>
+            </div>
+        </div>
+    </header>
+</div>
+
+<main class="container mt-5">
+    <h2 class="text-center mb-4">Мои забронированные номера</h2>
+    <div th:if="${#lists.isEmpty(bookedRooms)}" class="alert alert-info text-center">
+        Нет забронированных номеров:)
+    </div>
+    <div class="row">
+        <div class="col-md-6 d-flex mb-4" th:each="item : ${bookedRooms}">
+            <div class="row g-0 w-100 border rounded overflow-hidden shadow-sm position-relative h-100">
+                <div class="col p-4 d-flex flex-column justify-content-between position-static">
+                    <h4>Класс: <span th:text="${item.roomType}"></span></h4>
+                    <p class="mb-1">Количество мест: <strong th:text="${item.capacity}"></strong></p>
+                    <p class="mb-1">Цена: <strong th:text="${item.price}"></strong>$</p>
+                    <p class="mb-2" th:text="${item.description}"></p>
+                    <div class="mt-auto justify-content-end">
+                        <form th:action="@{/bookings/delete/{id}(id=${item.id})}" method="post">
+                            <button type="submit" class="btn btn-outline-danger">Удалить</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-auto d-flex align-items-center">
+                    <img th:src="${item.image}"
+                         th:alt="${item.roomType}"
+                         class="img-fluid rounded"
+                         style="max-width: 300px;" />
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="py-4 text-center text-body-secondary bg-body-tertiary">
+    <p>Blog template built by <a href="https://t.me/kiwiasos" class="link-primary">@kiwiasos</a>.</p>
+    <p class="mb-0">
+        <a href="#" class="link-danger">Наверх</a>
+    </p>
+</footer>
+</body>
+</html>

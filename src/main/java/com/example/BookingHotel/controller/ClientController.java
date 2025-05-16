@@ -17,20 +17,16 @@ public class ClientController {
 
     // Регистрация
     @GetMapping("/register")
-    public String showRegistrationForm(Model model) {
+    public String showRegisterPage(Model model) {
         model.addAttribute("client", new ClientRegistrationDto());
         return "register";
     }
 
-    @PostMapping("/register")
-    public String register(@Valid @ModelAttribute("client") ClientRegistrationDto dto,
-                           BindingResult result) {
-        if (result.hasErrors()) {
-            return "register";
-        }
-
-        clientService.register(dto);
-        return "redirect:/login?registered";
+    @PostMapping("/saveClient")
+    public String registerClient(@ModelAttribute("client") ClientRegistrationDto dto) {
+        System.out.println("Регистрация: " + dto.getName() + " " + dto.getPhone());
+        clientService.registerClient(dto);
+        return "redirect:/login";
     }
 
     // Логин
@@ -39,14 +35,4 @@ public class ClientController {
         model.addAttribute("client", new ClientLoginDto());
         return "login";
     }
-
- /*   @PostMapping
-    public Client AddClient(@RequestBody Client client) {
-        return clientService.AddClient(client);
-    }
-
-    @DeleteMapping(path = "{id}")
-    public void DeleteClient(@PathVariable Long id) {
-        clientService.DeleteClient(id);
-    }*/
 }

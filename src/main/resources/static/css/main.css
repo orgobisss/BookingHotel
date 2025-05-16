@@ -1,0 +1,41 @@
+.bg-image-main {
+    background-image: url('/images/bg_main.jpeg');
+    background-size: cover;
+    background-position: center;
+    height: 50vh;
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Полупрозрачный чёрный фон */
+    z-index: 1; /* Расположить поверх фона */
+}
+
+section {
+    position: relative; /* Контент поверх затемнения */
+    z-index: 2; /* Контент поверх overlay */
+}
+
+form {
+    position: relative; /* Контент поверх затемнения */
+    z-index: 2; /* Контент поверх overlay */
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1; /* Занимает всё доступное пространство */
+}

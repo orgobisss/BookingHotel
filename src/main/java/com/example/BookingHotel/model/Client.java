@@ -31,7 +31,7 @@ public class Client {
     @NotBlank
     @Column(unique = true)
     private String phone;
-    private String role = "user";
+    private String role = "ROLE_USER";
 
     @ManyToMany
     @JoinTable(
@@ -40,15 +40,4 @@ public class Client {
             inverseJoinColumns = @JoinColumn(name = "room_id")
     )
     private Set<HotelRoom> bookedRooms = new HashSet<>();
-
-    @Override
-    public String toString() {
-        return "Client{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                '}';
-    }
 }

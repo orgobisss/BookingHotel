@@ -30,17 +30,4 @@ public class HotelRoom {
 
     @ManyToMany(mappedBy = "bookedRooms")
     private Set<Client> clients = new HashSet<>();
-
-    @Override
-    public String toString() {
-        return "HotelRoom{" +
-                "id=" + id +
-                ", roomType='" + roomType + '\'' +
-                ", capacity=" + capacity +
-                ", price=" + price +
-                ", available=" + available +
-                ", description='" + description + '\'' +
-                ", image='" + image + '\'' +
-                '}';
-    }
 }

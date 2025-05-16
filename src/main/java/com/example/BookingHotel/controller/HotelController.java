@@ -13,10 +13,9 @@ public class HotelController {
 
     private final HotelRoomService hotelRoomService;
 
-    @GetMapping
+    @GetMapping("/")
     public String home(Model model) {
-
-        model.addAttribute("allRooms", hotelRoomService.getAllRoomsSortedByPriceDesc());
-        return "home";
+        model.addAttribute("allRooms", hotelRoomService.getAvailableRoomsSortedByPriceDesc());
+    return "home";
     }
 }

@@ -12,7 +12,7 @@ import java.util.List;
 public class HotelRoomService {
     private final HotelRoomRepository hotelRoomRepository;
 
-    public List<HotelRoom> getAllRoomsSortedByPriceDesc() {
-        return hotelRoomRepository.findAllByOrderByPriceDesc();
+    public List<HotelRoom> getAvailableRoomsSortedByPriceDesc() {
+        return hotelRoomRepository.findByAvailableTrueOrderByPriceDesc();
     }
 }
