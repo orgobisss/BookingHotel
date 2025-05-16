@@ -16,7 +16,11 @@ public class ClientService {
 
     @Transactional
     public void registerClient(ClientRegistrationDto dto) {
+
+        System.out.println("==> registerClient вызван");
+
         if (clientRepository.existsByPhone(dto.getPhone())) {
+            System.out.println("==> Клиент с таким телефоном уже есть");
             throw new RuntimeException("Phone already registered");
         }
 
@@ -26,6 +30,15 @@ public class ClientService {
         client.setEmail(dto.getEmail());
         client.setPhone(dto.getPhone());
         client.setRole("ROLE_USER"); // именно с "ROLE_", иначе Spring Security не распознает
+
+
+        System.out.println("Сохраняем клиента: " + client);
         clientRepository.save(client);
+
+    }
+
+    @Transactional
+    public void deleteById(Long id) {
+        clientRepository.deleteById(id);
     }
 }

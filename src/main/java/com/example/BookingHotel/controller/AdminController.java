@@ -17,10 +17,18 @@ public class AdminController {
     private final ClientRepository clientRepository;
 
     @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping("/admin/clients")
+    @GetMapping("/clients")
     public String showAllClients(Model model) {
         List<Client> clients = clientRepository.findAll();
+
+        // Принудительная инициализация списка комнат
+        clients.forEach(client -> {
+            if (client.getBookedRooms() != null) {
+                client.getBookedRooms().size(); // или логирование для проверки
+            }
+        });
+
         model.addAttribute("clients", clients);
-        return "admin/clients";
+        return "clients";
     }
 }

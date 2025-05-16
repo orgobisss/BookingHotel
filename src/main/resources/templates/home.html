@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="ru" data-theme="light" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="ru" data-theme="light" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -24,7 +25,7 @@
         <div class="col-12 col-md-6 d-flex justify-content-center mb-2 mb-md-0" sec:authorize="isAuthenticated()">
             <a th:href="@{/bookings}" class="btn btn-light">Мои бронирования</a>
             <div sec:authorize="hasRole('ADMIN')" class="mx-2">
-                <a th:href="@{/clients}"  class="btn btn-outline-warning">Клиенты</a>
+                <a th:href="@{/clients}"  class="btn btn-warning">Клиенты</a>
             </div>
         </div>
 

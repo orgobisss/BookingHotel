@@ -20,7 +20,8 @@ public class SecurityConfig {
         return http
                 .authenticationProvider(customAuthProvider)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/home", "/register", "/login", "/css/**", "/js/**", "/images/**").permitAll()
+                        .requestMatchers("/", "/home","/saveClient", "/register", "/login", "/css/**", "/js/**", "/images/**").permitAll()
+                        .requestMatchers("/clients/**").hasRole("ADMIN")  // доступ только для ADMIN
                         .anyRequest().authenticated()
                 )
                 .formLogin(login -> login

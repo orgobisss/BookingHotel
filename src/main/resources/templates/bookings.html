@@ -25,7 +25,7 @@
         <div class="col-12 col-md-3 d-flex justify-content-center justify-content-md-end align-items-center" >
             <div sec:authorize="isAuthenticated()" class="d-flex align-items-center gap-2">
                 <span class="navbar-text me-3" sec:authentication="name"></span>
-                <form th:action="@{/}" method="post" class="mb-0">
+                <form th:action="@{/logout}" method="post" class="mb-0">
                     <button type="submit" class="btn btn-outline-danger">Выйти</button>
                 </form>
             </div>

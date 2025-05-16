@@ -5,7 +5,9 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -40,4 +42,8 @@ public class Client {
             inverseJoinColumns = @JoinColumn(name = "room_id")
     )
     private Set<HotelRoom> bookedRooms = new HashSet<>();
+
+    public List<HotelRoom> getBookedRoomsList() {
+        return new ArrayList<>(bookedRooms);
+    }
 }
